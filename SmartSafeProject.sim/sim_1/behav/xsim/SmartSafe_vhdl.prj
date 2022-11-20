@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Decoder.vhd" \
+"../../../../SmartSafeProject.srcs/sources_1/new/SevenSeg.vhd" \
+"../../../../PmodKYPD.vhd" \
+
+# Do not sort compile order
+nosort
