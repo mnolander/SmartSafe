@@ -17,7 +17,7 @@ begin
         if (reset = '1') then
             temporal <= '0';
             counter  <= 0;
-        elsif rising_edge(clk) then
+        elsif (clk='1' and clk'event) then
             if (counter = 780) then
                 temporal <= NOT(temporal);
                 counter  <= 0;

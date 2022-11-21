@@ -87,12 +87,13 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
+  {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.srcs/sources_1/new/BuzzerClock.vhd}
   {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.srcs/sources_1/new/state_package.vhd}
   {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/Decoder.vhd}
   {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.srcs/sources_1/new/ServoClock.vhd}
   {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.srcs/sources_1/new/ServoPWM.vhd}
   {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.srcs/sources_1/new/SevenSeg.vhd}
-  {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/PmodKYPD.vhd}
+  {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeMain.vhd}
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

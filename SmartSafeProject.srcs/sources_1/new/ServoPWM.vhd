@@ -23,7 +23,7 @@ begin
     counter: process (reset, clk) begin
         if (reset = '1') then
             cnt <= (others => '0');
-        elsif rising_edge(clk) then
+        elsif (clk='1' and clk'event) then
             if (cnt = 1279) then
                 cnt <= (others => '0');
             else

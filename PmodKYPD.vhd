@@ -57,19 +57,28 @@ component ServoPWM is
     );
 end component;
 
+component BuzzerClock is
+    Port (
+        clk    : in  STD_LOGIC;
+        reset  : in  STD_LOGIC;
+        clk_out: out STD_LOGIC
+    );
+end component;
+
 signal globalState: globalStateList;
 signal Decode, safePassword: STD_LOGIC_VECTOR (15 downto 0);
-signal buzzerCounter: integer:=0;
-signal clk_out: STD_LOGIC := '0';
+signal servoClk_out, buzzerClk_out, buzzerBool: STD_LOGIC := '0';
 signal servoPos: STD_LOGIC_VECTOR(6 downto 0);
 begin
 	DecodeDigits: Decoder port map (clk=>clk, Row=>JA(7 downto 4), globalState=>globalState, selectDigit=>selectDigit, lockButton=>lockButton, Col=>JA(3 downto 0), DecodeOut=>Decode(15 downto 0));
 	PasswordOutput: SevenSeg port map (clk=>clk,  reset=>reset, PasswordDisplay=>Decode, an=>an, LED_out=>seg);
-	ServoCLK: ServoClock port map (clk=>clk, reset=>reset, clk_out=>clk_out);
-	ServoFreq: ServoPWM port map (clk=>clk_out, reset=>reset, pos=>servoPos, servo=>servoOut);
+	ServoCLK: ServoClock port map (clk=>clk, reset=>reset, clk_out=>ServoClk_out);
+	ServoFreq: ServoPWM port map (clk=>ServoClk_out, reset=>reset, pos=>servoPos, servo=>servoOut);
+	BuzzerCLK: BuzzerClock port map (clk=>clk, reset=>reset, clk_out=>buzzerClk_out);
 	
 	process(CLK, globalState)
 	begin
+	buzzerBool <= '0';
         if(CLK='1' and CLK'event) then
         --Test LEDs
         --LED 0 = password (on = set, off = wrong)
@@ -87,7 +96,7 @@ begin
                         safePassword <= Decode;
                         testOut(0) <= '1'; --Test, remove later
                     elsif(passwordButton = '1' AND selectDigit /= "0000") then
-                        buzzer <= '1';
+                        buzzerBool <= '1';
                     elsif(lockButton = '1') then
                         globalState <= locked;
                         servoPos <= "1111111";
@@ -118,21 +127,26 @@ begin
                             globalState <= unlocked;
                             servoPos <= "0000000";
                         elsif(Decode /= safePassword) then
-                            buzzer <= '1';
+                            buzzerBool <= '1';
                             testOut(0) <= '0'; --Test, remove later
                         end if;
                     elsif(passwordButton = '1') then
-                        buzzer <= '1';
+                        buzzerBool <= '1';
                     elsif(lockButton = '1') then
                         NULL;
                     end if;
             end case;  
-            if(buzzerCounter = 500) then
-                buzzerCounter <= 0; 
-                buzzer <= '0';
-            else
-                buzzerCounter <= buzzerCounter + 1;
-            end if;
         end if;         
+	end process;
+	
+	process(buzzerClk_Out, buzzerBool)
+	begin
+	   if(buzzerClk_out='1' and buzzerClk_out'event) then
+	       if(buzzerBool = '1') then
+	           buzzer <= '1';
+	       elsif(buzzerBool = '0') then
+	           buzzer <= '0';
+	       end if;
+	   end if;
 	end process;
 end Behavioral;
