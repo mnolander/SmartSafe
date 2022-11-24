@@ -49,7 +49,6 @@ process(clk)
                 digit3 <= "0000";    
                 digit4 <= "0000";
             end if;
-			-- 1ms
 			if sclk = "00011000011010100000" then 
 				--C1
 				Col<= "0111";

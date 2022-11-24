@@ -6,18 +6,18 @@ use work.Common.all;
 
 entity SmartSafe is
     Port ( 
-			  clk: in  STD_LOGIC;
-			  reset: in STD_LOGIC;
-			  passwordButton: in STD_LOGIC; -- Button for setting/changing password
-			  unlockButton: in STD_LOGIC; -- Button for unlocking safe
-			  lockButton: in STD_LOGIC; -- Button for locking safe
-			  selectDigit: in STD_LOGIC_VECTOR(3 downto 0); -- To select digit of password on seven segment
-			  JA: inout  STD_LOGIC_VECTOR (7 downto 0); -- PmodKYPD is designed to be connected to JA
-			  an: out  STD_LOGIC_VECTOR (3 downto 0);   -- Controls which position of the seven segment display to display
-			  seg: out  STD_LOGIC_VECTOR (6 downto 0); -- Digit to display on the seven segment display 
-			  buzzer: out STD_LOGIC; -- Buzzer for audible warnings
-			  servoOut: out STD_LOGIC; -- Output for servo for door
-			  testOut: out STD_LOGIC_VECTOR (5 downto 0)); -- Test LEDs
+        clk: in  STD_LOGIC;
+        reset: in STD_LOGIC;
+        passwordButton: in STD_LOGIC; -- Button for setting/changing password
+		unlockButton: in STD_LOGIC; -- Button for unlocking safe
+		lockButton: in STD_LOGIC; -- Button for locking safe
+        selectDigit: in STD_LOGIC_VECTOR(3 downto 0); -- To select digit of password on seven segment
+		JA: inout  STD_LOGIC_VECTOR (7 downto 0); -- PmodKYPD is designed to be connected to JA
+		an: out  STD_LOGIC_VECTOR (3 downto 0);   -- Controls which position of the seven segment display to display
+		seg: out  STD_LOGIC_VECTOR (6 downto 0); -- Digit to display on the seven segment display 
+		buzzer: out STD_LOGIC; -- Buzzer for audible warnings
+		servoOut: out STD_LOGIC; -- Output for servo for door
+		testOut: out STD_LOGIC_VECTOR (5 downto 0)); -- Test LEDs
 end SmartSafe;
 
 architecture Behavioral of SmartSafe is
@@ -33,11 +33,12 @@ component Decoder is
 end component;
 	
 component SevenSeg is
-	Port ( clk: in STD_LOGIC;
-           reset: in STD_LOGIC; 
-           PasswordDisplay: in  STD_LOGIC_VECTOR (15 downto 0);
-           an: out STD_LOGIC_VECTOR (3 downto 0);
-           LED_out: out STD_LOGIC_VECTOR (6 downto 0));
+	Port ( 
+        clk: in STD_LOGIC;
+        reset: in STD_LOGIC; 
+        PasswordDisplay: in  STD_LOGIC_VECTOR (15 downto 0);
+        an: out STD_LOGIC_VECTOR (3 downto 0);
+        LED_out: out STD_LOGIC_VECTOR (6 downto 0));
 end component;
 
 component ServoClock is
@@ -60,8 +61,7 @@ end component;
 component BuzzerClock is
     Port (
         clk    : in  STD_LOGIC;
-        reset  : in  STD_LOGIC;
-        clk_out: out STD_LOGIC
+        buzzerClk: out STD_LOGIC
     );
 end component;
 
@@ -74,7 +74,7 @@ begin
 	PasswordOutput: SevenSeg port map (clk=>clk,  reset=>reset, PasswordDisplay=>Decode, an=>an, LED_out=>seg);
 	ServoCLK: ServoClock port map (clk=>clk, reset=>reset, clk_out=>ServoClk_out);
 	ServoFreq: ServoPWM port map (clk=>ServoClk_out, reset=>reset, pos=>servoPos, servo=>servoOut);
-	BuzzerCLK: BuzzerClock port map (clk=>clk, reset=>reset, clk_out=>buzzerClk_out);
+	BuzzerCLK: BuzzerClock port map (clk=>clk, buzzerClk=>buzzerClk_out);
 	
 	process(CLK, globalState, buzzerBool)
 	begin
@@ -139,14 +139,12 @@ begin
         end if; 
 	end process;
 	
-    process(buzzerClk_Out, buzzerBool)
+	process(buzzerClk_out, buzzerBool) -- Activate/deactivate buzzer
 	begin
-	   if(buzzerClk_out='1' and buzzerClk_out'event) then
-	       if(buzzerBool = '1') then
-	           buzzer <= '1';
-	       elsif(buzzerBool = '0') then
-	           buzzer <= '0';
-	       end if;
+	   if(buzzerClk_out = '1' AND buzzerBool = '1') then
+	       buzzer <= '1';
+	   else
+	       buzzer <= '0';
 	   end if;
-	end process;
+    end process;
 end Behavioral;

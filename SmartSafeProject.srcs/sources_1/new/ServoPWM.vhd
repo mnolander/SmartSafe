@@ -1,3 +1,5 @@
+--Adapted from https://www.codeproject.com/Articles/513169/Servomotor-Control-with-PWM-and-VHDL
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
@@ -12,14 +14,10 @@ entity ServoPWM is
 end ServoPWM;
 
 architecture Behavioral of ServoPWM is
-    -- Counter, from 0 to 1279.
     signal cnt : unsigned(10 downto 0);
-    -- Temporal signal used to generate the PWM pulse.
     signal pwmi: unsigned(7 downto 0);
 begin
-    -- Minimum value should be 0.5ms.
     pwmi <= unsigned('0' & pos) + 32;
-    -- Counter process, from 0 to 1279.
     counter: process (reset, clk) begin
         if (reset = '1') then
             cnt <= (others => '0');
@@ -31,6 +29,5 @@ begin
             end if;
         end if;
     end process;
-    -- Output signal for the servomotor.
     servo <= '1' when (cnt < pwmi) else '0';
 end Behavioral;
