@@ -17,7 +17,7 @@ entity SmartSafe is
 		seg: out  STD_LOGIC_VECTOR (6 downto 0); -- Digit to display on the seven segment display 
 		buzzer: out STD_LOGIC; -- Buzzer for audible warnings
 		servoOut: out STD_LOGIC; -- Output for servo for door
-		testOut: out STD_LOGIC_VECTOR (5 downto 0)); -- Test LEDs
+		greenLED: out STD_LOGIC); -- Green LED for success
 end SmartSafe;
 
 architecture Behavioral of SmartSafe is
@@ -80,21 +80,11 @@ begin
 	begin
 	buzzerBool <= '0';
         if(CLK='1' and CLK'event) then
-        --Test LEDs
-        --LED 0 = password (on = set, off = wrong)
-        --LED 1 = door (on=locked, off=unlocked)
-        --LED 3 = State is set
-        --LED 4 = State is unlocked
-        --LED 5 = State is locked
             case globalState is
-                when set =>
-                    testOut(3) <= '1'; --Test, remove later
-                    testOut(4) <= '0';
-                    testOut(5) <= '0';
-                    
+                when set =>                    
                     if(passwordButton = '1' AND selectDigit = "0000") then
                         safePassword <= Decode;
-                        testOut(0) <= '1'; --Test, remove later
+                        greenLED<='1';
                     elsif(passwordButton = '1' AND selectDigit /= "0000") then
                         buzzerBool <= '1';
                     elsif(lockButton = '1') then
@@ -104,11 +94,7 @@ begin
                         NULL;
                     end if;
                 when unlocked =>
-                    testOut(3) <= '0'; --Test, remove later
-                    testOut(4) <= '1';
-                    testOut(5) <= '0';                
-                
-                    testOut(1) <= '0'; --Test, remove later
+                	greenLED <= '0';                            
 	                if(passwordButton = '1') then
 	                   globalState <= set;
 	                elsif(lockButton = '1') then
@@ -117,18 +103,14 @@ begin
 	                elsif(unlockButton = '1') then
 	                   NULL;
 	                end if;
-                when locked =>
-                    testOut(3) <= '0'; --Test, remove later
-                    testOut(4) <= '0';
-                    testOut(5) <= '1';         
-                
+                when locked =>         
+                    greenLED <= '0';             
                     if(unlockButton = '1') then
                         if(Decode = safePassword) then
                             globalState <= unlocked;
                             servoPos <= "0000000";
                         elsif(Decode /= safePassword) then
                             buzzerBool <= '1';
-                            testOut(0) <= '0'; --Test, remove later
                         end if;
                     elsif(passwordButton = '1') then
                         buzzerBool <= '1';

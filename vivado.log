@@ -2,10 +2,10 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Sat Nov 19 22:13:58 2022
-# Process ID: 12112
+# Start of session at: Fri Nov 25 14:27:35 2022
+# Process ID: 10028
 # Current directory: C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16248 C:\Users\Mikeb\OneDrive - Thompson Rivers University\CENG 3010\SmartSafeProject\SmartSafeProject.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5776 C:\Users\Mikeb\OneDrive - Thompson Rivers University\CENG 3010\SmartSafeProject\SmartSafeProject.xpr
 # Log file: C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/vivado.log
 # Journal file: C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject\vivado.jou
 # Running On: ScratPC, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 16, Host memory: 34267 MB
@@ -60,9 +60,13 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 avail
 INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.gen/sources_1'.
 Scanning sources...
 Finished scanning sources
+ERROR: [Project 1-510] Parsing generated run data failed
+open_project {C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.xpr}
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/Mikeb/OneDrive - Thompson Rivers University/CENG 3010/SmartSafeProject/SmartSafeProject.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.2/data/ip'.
+open_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1232.527 ; gain = 0.000
 update_compile_order -fileset sources_1
-exit
-INFO: [Common 17-206] Exiting Vivado at Sat Nov 19 22:14:18 2022...

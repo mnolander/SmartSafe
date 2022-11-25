@@ -50,21 +50,7 @@ set_property PACKAGE_PIN V4 [get_ports {an[2]}]
     set_property IOSTANDARD LVCMOS33 [get_ports {an[2]}]
 set_property PACKAGE_PIN W4 [get_ports {an[3]}]
     set_property IOSTANDARD LVCMOS33 [get_ports {an[3]}]
-    
-## LEDs
-set_property PACKAGE_PIN U16 [get_ports {testOut[0]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {testOut[0]}]
-set_property PACKAGE_PIN E19 [get_ports {testOut[1]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {testOut[1]}]
-set_property PACKAGE_PIN U19 [get_ports {testOut[2]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {testOut[2]}]
-set_property PACKAGE_PIN V19 [get_ports {testOut[3]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {testOut[3]}]
-set_property PACKAGE_PIN W18 [get_ports {testOut[4]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {testOut[4]}]
-set_property PACKAGE_PIN U15 [get_ports {testOut[5]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {testOut[5]}]
- 
+     
 ##Pmod Header JA
 ##Sch name = JA1
 set_property PACKAGE_PIN J1 [get_ports {JA[0]}]
@@ -121,6 +107,10 @@ set_property PACKAGE_PIN B16 [get_ports {servoOut}]
 ##Sch name = JC4
 set_property PACKAGE_PIN P18 [get_ports {buzzer}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {buzzer}]
+##Sch name = JC10
+set_property PACKAGE_PIN R18 [get_ports {greenLED}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {greenLED}]
+
  
  
 ## Configuration options, can be used for all designs

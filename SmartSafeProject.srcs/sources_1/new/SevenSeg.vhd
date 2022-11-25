@@ -28,7 +28,6 @@ begin
     when "1000" => LED_out <= "0000000"; -- "8"     
     when "1001" => LED_out <= "0000100"; -- "9" 
     when "1010" => LED_out <= "0001000"; -- A
-
     when "1011" => LED_out <= "1100000"; -- b
     when "1100" => LED_out <= "0110001"; -- C
     when "1101" => LED_out <= "1000010"; -- d
