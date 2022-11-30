@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Thu Nov 24 12:00:05 2022
-| Host             : ScratTop running 64-bit major release  (build 9200)
+| Date             : Tue Nov 29 17:42:25 2022
+| Host             : ScratPC running 64-bit major release  (build 9200)
 | Command          : report_power -file SmartSafe_power_routed.rpt -pb SmartSafe_power_summary_routed.pb -rpx SmartSafe_power_routed.rpx
 | Design           : SmartSafe
 | Device           : xc7a35tcpg236-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.077        |
+| Total On-Chip Power (W)  | 0.075        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.005        |
+| Dynamic (W)              | 0.004        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      540 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      276 |     20800 |            1.33 |
+| Slice Logic    |    <0.001 |      534 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      274 |     20800 |            1.32 |
 |   CARRY4       |    <0.001 |       45 |      8150 |            0.55 |
-|   Register     |    <0.001 |      143 |     41600 |            0.34 |
+|   Register     |    <0.001 |      140 |     41600 |            0.34 |
 |   Others       |     0.000 |       11 |       --- |             --- |
-| Signals        |    <0.001 |      412 |       --- |             --- |
-| I/O            |     0.003 |       36 |       106 |           33.96 |
+| Signals        |    <0.001 |      407 |       --- |             --- |
+| I/O            |     0.002 |       31 |       106 |           29.25 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.077 |          |           |                 |
+| Total          |     0.075 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.011 |       0.002 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.011 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -140,7 +140,7 @@ Table of Contents
 +-----------+-----------+
 | Name      | Power (W) |
 +-----------+-----------+
-| SmartSafe |     0.005 |
+| SmartSafe |     0.004 |
 +-----------+-----------+
 
 

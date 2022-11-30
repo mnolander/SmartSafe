@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Thu Nov 24 11:59:47 2022
-| Host         : ScratTop running 64-bit major release  (build 9200)
+| Date         : Tue Nov 29 17:42:10 2022
+| Host         : ScratPC running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file SmartSafe_control_sets_placed.rpt
 | Design       : SmartSafe
 | Device       : xc7a35t
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |    12 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    41 |
+| Unused register locations in slices containing registers |    44 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -43,9 +43,9 @@ Table of Contents
 | >= 0 to < 4        |     1 |
 | >= 4 to < 6        |     5 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     0 |
+| >= 8 to < 10       |     1 |
 | >= 10 to < 12      |     1 |
-| >= 12 to < 14      |     1 |
+| >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
 | >= 16              |     4 |
 +--------------------+-------+
@@ -58,10 +58,10 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              12 |            5 |
+| No           | No                    | No                     |               9 |            4 |
 | No           | No                    | Yes                    |              42 |           13 |
-| No           | Yes                   | No                     |              20 |           10 |
-| Yes          | No                    | No                     |              53 |           16 |
+| No           | Yes                   | No                     |              20 |            7 |
+| Yes          | No                    | No                     |              53 |           17 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |              16 |            6 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -73,17 +73,17 @@ Table of Contents
 +----------------+--------------------------------+--------------------------------+------------------+----------------+--------------+
 |  Clock Signal  |          Enable Signal         |        Set/Reset Signal        | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+--------------------------------+--------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | testOut[0]_i_1_n_0             |                                |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | DecodeDigits/digit1[3]_i_2_n_0 | DecodeDigits/digit1[3]_i_1_n_0 |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | DecodeDigits/Col[3]_i_1_n_0    |                                |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | DecodeDigits/digit2[3]_i_2_n_0 | DecodeDigits/digit2[3]_i_1_n_0 |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | DecodeDigits/digit4[3]_i_2_n_0 | DecodeDigits/digit4[3]_i_1_n_0 |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | DecodeDigits/digit3[3]_i_2_n_0 | DecodeDigits/digit3[3]_i_1_n_0 |                1 |              4 |         4.00 |
-|  ServoCLK/CLK  |                                | reset_IBUF                     |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG |                                |                                |                5 |             12 |         2.40 |
+|  clk_IBUF_BUFG | greenLED_i_1_n_0               |                                |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | DecodeDigits/digit4[3]_i_2_n_0 | DecodeDigits/digit4[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | DecodeDigits/Col[3]_i_1_n_0    |                                |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | DecodeDigits/digit2[3]_i_2_n_0 | DecodeDigits/digit2[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | DecodeDigits/digit3[3]_i_2_n_0 | DecodeDigits/digit3[3]_i_1_n_0 |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | DecodeDigits/digit1[3]_i_2_n_0 | DecodeDigits/digit1[3]_i_1_n_0 |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG |                                |                                |                4 |              9 |         2.25 |
+|  ServoCLK/CLK  |                                | reset_IBUF                     |                4 |             11 |         2.75 |
 |  clk_IBUF_BUFG | safePassword[15]_i_1_n_0       |                                |                5 |             16 |         3.20 |
-|  clk_IBUF_BUFG |                                | DecodeDigits/sclk[19]_i_1_n_0  |               10 |             20 |         2.00 |
-|  clk_IBUF_BUFG |                                | reset_IBUF                     |               10 |             31 |         3.10 |
+|  clk_IBUF_BUFG |                                | DecodeDigits/sclk[19]_i_1_n_0  |                7 |             20 |         2.86 |
+|  clk_IBUF_BUFG |                                | reset_IBUF                     |                9 |             31 |         3.44 |
 |  clk_IBUF_BUFG | BuzzerCLK/count0               |                                |                8 |             32 |         4.00 |
 +----------------+--------------------------------+--------------------------------+------------------+----------------+--------------+
 
