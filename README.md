@@ -8,7 +8,7 @@ Project written in VHDL to create an electronic safe with password functionality
  - Passive buzzer
  - Green LED
 
-![](https://raw.githubusercontent.com/mnolander/SmartSafe/main/Overview.jpg?token=GHSAT0AAAAAAB2G5BWRTVZSIETUJHM5ILFQY4G7EMQ)
+![](https://raw.githubusercontent.com/mnolander/SmartSafe/main/Overview.png?token=GHSAT0AAAAAAB2G5BWQQP2G3VCVIP2BS5LEY4G7YWA)
 
 ## FPGA Pins
 - **Servo:** POWER -> VCC on JB, GND -> GND on JB, SIGNAL -> JB4
